@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,11 +12,6 @@ public class MessageDialog : BaseDialog
 	{
 		messageText.text = message;
 		closeButton.onClick.AddListener(() => { onClose(); });
-	}
-
-	internal void Init(object greetingMessage, Action p)
-	{
-		throw new NotImplementedException();
 	}
 
 	public override string GetDialogId()

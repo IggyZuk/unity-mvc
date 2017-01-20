@@ -12,7 +12,7 @@ public static class ModelService
 		}
 
 		model.ticks++;
-		Debug.Log(model.ticks);
+		Debug.Log((float)model.ticks * Config.TICK_INTERVAL);
 	}
 
 	public static void AddBox(Model model, Position position)

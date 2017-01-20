@@ -14,7 +14,11 @@ public class Context : MonoBehaviour
 		messageDialog.Init(Config.GREETINGS_MESSAGE, () =>
 		{
 			rootUI.CloseDialog(messageDialog.GetDialogId());
+
 			CreateWorld();
+
+			DebugDialog debugDialog = rootUI.AddDialog<DebugDialog>(Config.DEBUG_DIALOG_PATH);
+			debugDialog.Init(world);
 		});
 	}
 
