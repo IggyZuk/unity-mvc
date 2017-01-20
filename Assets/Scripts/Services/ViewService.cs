@@ -17,14 +17,14 @@ public static class ViewService
 			(
 				new Position(boxView.transform.position),
 				box.position,
-				Config.ViewDelay
+				Config.VIEW_DELAY
 			).ToVector();
 		}
 	}
 
 	public static void AddBoxView(View view, int boxId, Position position)
 	{
-		GameObject prefab = Resources.Load<GameObject>("Box");
+		GameObject prefab = Resources.Load<GameObject>(Config.VIEW_PATH + "Box");
 		GameObject go = Object.Instantiate<GameObject>(prefab);
 		go.transform.SetParent(view.root);
 

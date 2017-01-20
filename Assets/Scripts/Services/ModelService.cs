@@ -6,9 +6,9 @@ public static class ModelService
 	{
 		foreach(Box box in model.boxes)
 		{
-			box.position.x += (float)System.Math.Cos((float)(box.life) / 2f) * 1f;
-			box.position.y += (float)System.Math.Sin((float)(box.life) / 2f) * 1f;
-			box.life++;
+			box.position.x += (float)System.Math.Cos(box.life) * Config.TICK_INTERVAL;
+			box.position.y += (float)System.Math.Sin(box.life) * Config.TICK_INTERVAL;
+			box.life += Config.TICK_INTERVAL;
 		}
 
 		model.ticks++;

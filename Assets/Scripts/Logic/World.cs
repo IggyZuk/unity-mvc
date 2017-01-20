@@ -21,7 +21,7 @@ public class World : MonoBehaviour
 
 	void GetUserInput()
 	{
-		if(Input.GetMouseButton(0))
+		if(Input.GetMouseButtonDown(0))
 		{
 			ModelService.AddBox
 			(
