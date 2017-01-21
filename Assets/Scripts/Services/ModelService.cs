@@ -12,10 +12,9 @@ public static class ModelService
 		}
 
 		model.ticks++;
-		Debug.Log((float)model.ticks * Config.TICK_INTERVAL);
 	}
 
-	public static void AddBox(Model model, Position position)
+	public static Box AddBox(Model model, Position position)
 	{
 		Box box = new Box();
 		box.id = model.nextBoxId;
@@ -25,6 +24,8 @@ public static class ModelService
 
 		model.boxes.Add(box);
 		model.events.Enqueue(new BoxAddedEvent(box.id));
+
+		return box;
 	}
 
 	public static Box GetBoxWithId(Model model, int boxId)
