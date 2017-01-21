@@ -29,4 +29,35 @@ public class Position
 	{
 		return new Vector2(x, y);
 	}
+
+	public override bool Equals(object other)
+	{
+		return Equals(other as Position);
+	}
+
+	public bool Equals(Position other)
+	{
+		if(ReferenceEquals(other, null))
+		{
+			return false;
+		}
+		if(ReferenceEquals(other, this))
+		{
+			return true;
+		}
+
+		if(x != other.x) return false;
+		if(y != other.y) return false;
+
+		return true;
+	}
+
+	public override int GetHashCode()
+	{
+		int hash = 1;
+		if(x != 0L) hash ^= x.GetHashCode();
+		if(y != 0L) hash ^= y.GetHashCode();
+
+		return hash;
+	}
 }

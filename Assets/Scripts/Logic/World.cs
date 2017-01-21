@@ -11,6 +11,15 @@ public class World : MonoBehaviour
 
 		GameObject viewRoot = new GameObject("View");
 		view = new View(viewRoot.transform);
+
+		TileService.MakeGrid(model, Config.GRID_SQ_SIZE, Config.GRID_SQ_SIZE);
+
+		Camera.main.transform.position = new Vector3
+		(
+			Config.GRID_SQ_SIZE / 2f - 0.5f,
+			Config.GRID_SQ_SIZE / 2f - 0.5f,
+			-10f
+		);
 	}
 
 	void Update()
@@ -21,21 +30,31 @@ public class World : MonoBehaviour
 
 	void GetUserInput()
 	{
-		if(Input.GetMouseButtonDown(0))
+		if(Input.GetMouseButton(0))
 		{
-			ModelService.AddBox
+			Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			worldPos.x = (float)System.Math.Round(worldPos.x);
+			worldPos.y = (float)System.Math.Round(worldPos.y);
+
+			Tile clickedTile = TileService.GetTileAtPosition
 			(
 				model,
-				new Position(Camera.main.ScreenToWorldPoint(Input.mousePosition))
+				new Position(worldPos)
 			);
+
+			if(clickedTile != null)
+			{
+				clickedTile.tileTile = Tile.TileType.Grass;
+				model.events.Enqueue(new TileChangedTypeEvent(clickedTile.id));
+			}
 		}
 	}
 
 	void OnDrawGizmos()
 	{
-		foreach(Box box in model.boxes)
+		foreach(Position tilePos in model.tiles.Keys)
 		{
-			Gizmos.DrawWireCube(box.position.ToVector(), Vector3.one);
+			Gizmos.DrawWireCube(tilePos.ToVector(), Vector3.one);
 		}
 	}
 }

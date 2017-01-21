@@ -1,44 +1,16 @@
-using UnityEngine;
-
 public static class ModelService
 {
 	public static void Tick(Model model)
 	{
-		foreach(Box box in model.boxes)
+		foreach(Tile tile in model.tiles.Values)
 		{
-			box.position.x += (float)System.Math.Cos(box.life) * Config.TICK_INTERVAL;
-			box.position.y += (float)System.Math.Sin(box.life) * Config.TICK_INTERVAL;
-			box.life += Config.TICK_INTERVAL;
-		}
-
-		model.ticks++;
-	}
-
-	public static Box AddBox(Model model, Position position)
-	{
-		Box box = new Box();
-		box.id = model.nextBoxId;
-		model.nextBoxId++;
-		box.position = position;
-		box.life = 0;
-
-		model.boxes.Add(box);
-		model.events.Enqueue(new BoxAddedEvent(box.id));
-
-		return box;
-	}
-
-	public static Box GetBoxWithId(Model model, int boxId)
-	{
-		foreach(Box box in model.boxes)
-		{
-			if(box.id == boxId)
+			int r = model.rng.Next(0, 100);
+			if(r <= 5)
 			{
-				return box;
+				tile.tileTile = Tile.TileType.Water;
+				model.events.Enqueue(new TileChangedTypeEvent(tile.id));
 			}
 		}
-
-		// Warn
-		return null;
+		model.ticks++;
 	}
 }

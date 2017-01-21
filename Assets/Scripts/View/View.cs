@@ -1,10 +1,10 @@
-using Boo.Lang;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class View
 {
 	public Transform root;
-	public List<BoxView> boxViews = new List<BoxView>();
+	public Dictionary<int, TileView> tileViews = new Dictionary<int, TileView>();
 
 	public View(Transform root)
 	{
