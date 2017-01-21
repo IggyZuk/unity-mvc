@@ -21,8 +21,9 @@ public class DebugDialog : BaseDialog
 	void Update()
 	{
 		int boxCount = world.model.boxes.Count;
-		float timeInSeconds = world.model.ticks * Config.TICK_INTERVAL;
+		float ticks = world.model.ticks;
+		float time = world.model.ticks * Config.TICK_INTERVAL;
 
-		debugText.text = string.Format("Boxes: {0}, Time: {1}", boxCount, timeInSeconds);
+		debugText.text = string.Format("Boxes: {0}, Ticks: {1}, Time: {2}", boxCount, ticks, time);
 	}
 }
