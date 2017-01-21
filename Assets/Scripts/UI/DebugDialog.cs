@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class DebugDialog : BaseDialog
 {
 	[SerializeField]
-	Text boxCountText;
+	Text debugText;
 
 	World world;
 
@@ -20,6 +20,9 @@ public class DebugDialog : BaseDialog
 
 	void Update()
 	{
-		boxCountText.text = string.Format("Boxes: {0}", world.model.boxes.Count);
+		int boxCount = world.model.boxes.Count;
+		float timeInSeconds = world.model.ticks * Config.TICK_INTERVAL;
+
+		debugText.text = string.Format("Boxes: {0}, Time: {1}", boxCount, timeInSeconds);
 	}
 }
