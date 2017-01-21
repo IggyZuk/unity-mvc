@@ -20,9 +20,17 @@ public class DebugDialog : BaseDialog
 
 	void Update()
 	{
-		float ticks = world.model.ticks;
-		float time = world.model.ticks * Config.TICK_INTERVAL;
+		int ticks = world.model.ticks;
 
-		debugText.text = string.Format("Ticks: {0}, Time: {1}", ticks, time);
+		int waterCount = 0;
+		foreach(Tile tile in world.model.tiles.Values)
+		{
+			if(tile.tileTile == Tile.TileType.Water)
+			{
+				waterCount++;
+			}
+		}
+
+		debugText.text = string.Format("Tick: {0}, Water: {1}", ticks, waterCount);
 	}
 }

@@ -5,6 +5,10 @@ public class TileView : MonoBehaviour
 {
 	[SerializeField]
 	MeshRenderer meshRenderer;
+	[SerializeField]
+	Color grassColor;
+	[SerializeField]
+	Color waterColor;
 
 	public int tileId = -1;
 	public Tile.TileType tileType;
@@ -28,10 +32,10 @@ public class TileView : MonoBehaviour
 		switch(tileType)
 		{
 			case Tile.TileType.Grass:
-			c = Color.green;
+			c = grassColor;
 			break;
 			case Tile.TileType.Water:
-			c = Color.blue;
+			c = waterColor;
 			break;
 		}
 
@@ -50,7 +54,7 @@ public class TileView : MonoBehaviour
 
 	IEnumerator Highlight_Coroutine()
 	{
-		Color originalColor = (tileType == Tile.TileType.Grass) ? Color.green : Color.blue;
+		Color originalColor = (tileType == Tile.TileType.Grass) ? grassColor : waterColor;
 
 		float t = 0f;
 		float tTotal = 0.25f;

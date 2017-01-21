@@ -30,6 +30,26 @@ public class Position
 		return new Vector2(x, y);
 	}
 
+	public static Position operator +(Position left, Position right)
+	{
+		return new Position(left.x + right.x, left.y + right.y);
+	}
+
+	public static Position operator -(Position left, Position right)
+	{
+		return new Position(left.x - right.x, left.y - right.y);
+	}
+
+	public static Position operator *(Position left, long multiplier)
+	{
+		return new Position(left.x * multiplier, left.y * multiplier);
+	}
+
+	public static Position operator /(Position left, long multiplier)
+	{
+		return new Position(left.x / multiplier, left.y / multiplier);
+	}
+
 	public override bool Equals(object other)
 	{
 		return Equals(other as Position);

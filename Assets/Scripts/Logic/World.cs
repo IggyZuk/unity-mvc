@@ -13,6 +13,8 @@ public class World : MonoBehaviour
 		view = new View(viewRoot.transform);
 
 		TileService.MakeGrid(model, Config.GRID_SQ_SIZE, Config.GRID_SQ_SIZE);
+		Tile tile = TileService.GetTileAtPosition(model, new Position(Config.GRID_SQ_SIZE / 2, Config.GRID_SQ_SIZE / 2));
+		tile.tileTile = Tile.TileType.Water;
 
 		Camera.main.transform.position = new Vector3
 		(
